@@ -52,9 +52,13 @@ class My_Custom_Widget extends WP_Widget {
 }
 }
 
-	function my_register_custom_widget() {
+	/*function my_register_custom_widget() {
 	    register_widget( 'My_Custom_Widget' );
 	}
-	add_action( 'widgets_init', 'my_register_custom_widget' );
+	add_action( 'widgets_init', 'my_register_custom_widget' );*/
+	function load_employment() {
+	    register_widget( 'My_Custom_Widget' );
+	}
+	add_action( 'widgets_init', 'load_employment' );
 
  ?>
