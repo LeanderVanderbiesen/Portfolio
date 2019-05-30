@@ -11,7 +11,7 @@
 
 	class My_GreetUser_Widget extends WP_Widget
 	{
-		
+
 		public function __construct()
 		{
 			$options = array(
@@ -24,6 +24,8 @@
 
 		 public function widget( $args, $instance ) 
 		 {
+
+
 		 	$Hour = date('G');
 			if ( $Hour >= 5 && $Hour <= 11 ) {
 			   $instance['message'] = "Good Morning";
@@ -32,14 +34,12 @@
 			} else if ( $Hour >= 19 || $Hour <= 4 ) {
 			   $instance['message'] ="Good Evening";
 			}
-       	
-       		if ( !check_visited() ) 
+       		
+       		if ( $this->check_visited() ) 
        		{
        			 echo $args['before_widget'];
 
-			    echo $args['before_title'] . apply_filters( 'widget_title', 'Welcome user!' ) . $args['after_title'];
-			    echo $instance['message'];
-
+			    echo $args['before_title'] . $instance['message'] . apply_filters( 'widget_title', ', Welcome!' ) . $args['after_title'];
 			  
 			    echo $args['after_widget'];
        		}
@@ -47,32 +47,38 @@
        		{
        			 echo $args['before_widget'];
 
-		   		 echo $args['before_title'] . apply_filters( 'widget_title', 'Welcome back user!' ) . $args['after_title'];
-		    	 echo $instance['message'];
-
-		  
+		   		 echo $args['before_title'] . $instance['message'] . apply_filters( 'widget_title', ', Welcome back!' ) . $args['after_title'];
+		    	 
 		   		 echo $args['after_widget'];
        		}
-		   
-
-
-
 	    }
-	}
 
-	function check_visited()
-	{
-		if ( isset( $_COOKIE[ 'first_time'] ) ) 
+		public function check_visited()
 		{
-			return false;
-		}
+			if ( !isset( $_COOKIE[ 'visited'] ) ) 
+			{
+				return false;
+			}
+			else
+			{
+				setcookie( 'visited', '1', time() + 3600, "/");
 
-		setcookie( 'first_time', '1', time() + 1);
-
-		return true;
+				return true;
+			}
+		
+		}	
+	
 	}
+	
+	 function message_func($atts)
+	 {
+		 return "test";
+	 }  
+	add_shortcode( 'welcome_user', 'message_func');
 
-	function my_register_custom_widget() {
+
+	function my_register_custom_widget() 
+	{
 	    register_widget( 'My_GreetUser_Widget' );
 	}
 	add_action( 'widgets_init', 'my_register_custom_widget' );	
