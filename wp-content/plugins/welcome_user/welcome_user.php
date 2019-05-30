@@ -63,11 +63,6 @@
 		}
 		
 	}	
-	/* function message_func($atts)
-	 {
-		 return "test";
-	 }  
-	add_shortcode( 'welcome_user', 'message_func');*/
 
 	function my_register_custom_widget() 
 	{
