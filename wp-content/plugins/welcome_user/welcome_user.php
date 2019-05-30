@@ -1,5 +1,5 @@
 <?php 
-/*
+/**
 	Plugin Name: Welcome the user!
 	Plugin URI: https://www.sitepoint.com/
 	Description: Simple plugin to welcome your visitor depending on the time!
@@ -8,9 +8,9 @@
 	Author URI: https://www.sitepoint.com/
 	License: GPL2
 */
-
 	class My_GreetUser_Widget extends WP_Widget
 	{
+
 
 		public function __construct()
 		{
@@ -18,6 +18,7 @@
 	        'classname' => 'Welcome',
 	        'description' => 'Welcome your user.',
     		);
+    		set_cookie();
 
 	    	parent::__construct( 'welcome_user', 'Welcome the visitor', $options );
 		}
@@ -35,7 +36,7 @@
 			   $instance['message'] ="Good Evening";
 			}
        		
-       		if ( $this->check_visited() ) 
+       		if ( !$_COOKIE[ 'visited' ]) 
        		{
        			 echo $args['before_widget'];
 
@@ -52,30 +53,21 @@
 		   		 echo $args['after_widget'];
        		}
 	    }
-
-		public function check_visited()
-		{
-			if ( !isset( $_COOKIE[ 'visited'] ) ) 
-			{
-				return false;
-			}
-			else
-			{
-				setcookie( 'visited', '1', time() + 3600, "/");
-
-				return true;
-			}
-		
-		}	
-	
 	}
-	
-	 function message_func($atts)
+
+	 function set_cookie()
+	{
+		if ( !isset( $_COOKIE[ 'visited'] ) ) 
+		{
+			setcookie( 'visited', TRUE, time() + 3600, "/");
+		}
+		
+	}	
+	/* function message_func($atts)
 	 {
 		 return "test";
 	 }  
-	add_shortcode( 'welcome_user', 'message_func');
-
+	add_shortcode( 'welcome_user', 'message_func');*/
 
 	function my_register_custom_widget() 
 	{

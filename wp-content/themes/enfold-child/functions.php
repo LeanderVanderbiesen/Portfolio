@@ -52,7 +52,7 @@ add_action( 'save_post', 'sm_meta_save' );
 
 //EMPLOYMENT WIDGET
 
-class My_Custom_Widget extends WP_Widget {
+class My_Employment_Widget extends WP_Widget {
    
     public function __construct() {
         $options = array(
@@ -71,7 +71,7 @@ class My_Custom_Widget extends WP_Widget {
         echo $args['before_title'] . apply_filters( 'widget_title', 'Current state of employment:' ) . $args['after_title'];
         echo $instance['posttype'];
 
-        $this->posttype = $instance['posttype'];
+       echo $instance['posttype'];
         echo $args['after_widget'];
     }
 
@@ -97,10 +97,70 @@ class My_Custom_Widget extends WP_Widget {
 }
 
     function load_employment() {
-        register_widget( 'My_Custom_Widget' );
+        register_widget( 'My_Employment_Widget' );
     }
     add_action( 'widgets_init', 'load_employment' );
 
+
+//COUNTER WIDGET
+
+    class My_Counter_Widget extends WP_Widget
+    {
+        
+        function __construct()
+        {   
+            if ( isset( $_COOKIE[ 'count' ] ) ) 
+            {
+                $counter = ++$_COOKIE[ 'count' ];
+                setcookie('count', $counter, time() +3600);
+            }
+            else{
+                setcookie('count', 0 , time()+3600);
+            }
+            
+            $options = array('classname' => 'Number of visits',
+                'description' => 'Displays the total number of visits you have made to this site.'
+            );
+            parent::__construct('visits', 'Number of visits', $options);
+        }
+
+        public function widget($args, $instance)
+        {
+          
+            $instance[ 'nrOfVisits' ] = $_COOKIE[ 'count' ];
+            
+            echo $args[ 'before_widget' ];
+            if ( !$instance[ 'nrOfVisits' ] == 0) {
+               echo $args[ 'before_title' ] . apply_filters( 'widget_title', 'Number of visits: ') . $instance[ 'nrOfVisits' ] . $args[ 'after_title' ];
+
+            }
+            
+            echo $args[ 'after_widget' ];
+        }
+        public function update($new_instance, $old_instance)
+        {
+              $instance = $old_instance;
+              $instance[ 'nrOfVisits' ] = strip_tags( $new_instance[ 'nrOfVisits' ] );
+              return $instance;
+        }
+    }
+
+    function counter(){
+
+         if ( isset( $_COOKIE[ 'count' ] ) ) {
+                ++$_COOKIE[ 'count' ];
+             
+               setcookie('count', $_COOKIE[ 'count' ], time() +3600);
+        }
+    }
+
+     function load_visits() {
+        register_widget( 'My_Counter_Widget' );
+    }
+    add_action( 'widgets_init', 'load_visits' );
+
  ?>
+
+
 
 
