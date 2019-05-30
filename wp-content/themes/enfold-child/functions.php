@@ -71,7 +71,6 @@ class My_Employment_Widget extends WP_Widget {
         echo $args['before_title'] . apply_filters( 'widget_title', 'Current state of employment:' ) . $args['after_title'];
         echo $instance['posttype'];
 
-       echo $instance['posttype'];
         echo $args['after_widget'];
     }
 
@@ -145,19 +144,16 @@ class My_Employment_Widget extends WP_Widget {
         }
     }
 
-    function counter(){
-
-         if ( isset( $_COOKIE[ 'count' ] ) ) {
-                ++$_COOKIE[ 'count' ];
-             
-               setcookie('count', $_COOKIE[ 'count' ], time() +3600);
-        }
-    }
-
      function load_visits() {
         register_widget( 'My_Counter_Widget' );
     }
     add_action( 'widgets_init', 'load_visits' );
+
+    add_action( 'wp_enqueue_scripts', 'enqueue_parent_styles' );
+ 
+    function enqueue_parent_styles() {
+   wp_enqueue_style( 'parent-style', get_template_directory_uri().'/style.css' );
+}
 
  ?>
 
