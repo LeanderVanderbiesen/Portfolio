@@ -2,7 +2,7 @@
 
 //EMPLOYMENT WIDGET
 
-class My_Employment_Widget extends WP_Widget {
+/*class My_Employment_Widget extends WP_Widget {
    
     public function __construct() {
         $options = array(
@@ -105,7 +105,7 @@ class My_Employment_Widget extends WP_Widget {
    wp_enqueue_style( 'parent-style', get_template_directory_uri().'/style.css' );
 }
 
- ?>
+ ?>*/
 
 
 
