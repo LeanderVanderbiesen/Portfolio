@@ -3,7 +3,7 @@
 
 //checkbox
 
- function sm_custom_meta() {
+ /*function sm_custom_meta() {
     add_meta_box( 'sm_meta', __( 'Featured Posts', 'sm-textdomain' ), 'sm_meta_callback', 'post' );
 }
 function sm_meta_callback( $post ) {
@@ -46,7 +46,7 @@ if( isset( $_POST[ 'meta-checkbox' ] ) ) {
 }
  
 }
-add_action( 'save_post', 'sm_meta_save' );
+add_action( 'save_post', 'sm_meta_save' );*/
 
 
 

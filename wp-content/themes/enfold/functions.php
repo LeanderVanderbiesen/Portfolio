@@ -731,7 +731,7 @@ if ( ! function_exists( '_wp_render_title_tag' ) )
  */
 
 require_once( 'functions-enfold.php');
-/*require_once('drop-down-widget.php');*/
+
 
 /*
  * add option to edit elements via css class
