@@ -2,7 +2,7 @@
 
 //EMPLOYMENT WIDGET
 
-/*class My_Employment_Widget extends WP_Widget {
+class My_Employment_Widget extends WP_Widget {
    
     public function __construct() {
         $options = array(
@@ -53,7 +53,7 @@
 
 //COUNTER WIDGET
 
-    class My_Counter_Widget extends WP_Widget
+   /* class My_Counter_Widget extends WP_Widget
     {
         
         function __construct()
