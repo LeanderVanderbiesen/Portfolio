@@ -1,6 +1,6 @@
-<?php 
+<?php
 
-  add_action( 'wp_enqueue_scripts', 'enqueue_parent_styles' );
+add_action( 'wp_enqueue_scripts', 'enqueue_parent_styles' );
     function enqueue_parent_styles() {
    wp_enqueue_style( 'parent-style', get_template_directory_uri().'/style.css' );
 }
@@ -53,70 +53,4 @@ class My_Employment_Widget extends WP_Widget {
     }
     add_action( 'widgets_init', 'load_employment' );
 
-
-//COUNTER WIDGET
-
-    class My_Counter_Widget extends WP_Widget
-   {
-        
-        function __construct()
-        {   
-
-            $options = array('classname' => 'Number of visits',
-                'description' => 'Displays the total number of visits you have made to this site.'
-            );
-            parent::__construct('visits', 'Number of visits', $options);
-        }
-
-        public function widget($args, $instance)
-        {
-          
-            $instance[ 'nrOfVisits' ] = $_COOKIE[ 'count' ];
-            
-            echo $args[ 'before_widget' ];
-            
-            if ( $_COOKIE[ 'count' ] == 0) 
-            {
-                echo $args[ 'before_title' ] . apply_filters( 'widget_title', 'Number of visits: ') . '1' . $args[ 'after_title' ];
-            }
-            else{
-
-               echo $args[ 'before_title' ] . apply_filters( 'widget_title', 'Number of visits: ') . $instance[ 'nrOfVisits' ] . $args[ 'after_title' ];
-            }
-
-            echo $args[ 'after_widget' ];
-        }
-        public function update($new_instance, $old_instance)
-        {
-              $instance = $old_instance;
-              $instance[ 'nrOfVisits' ] = strip_tags( $new_instance[ 'nrOfVisits' ] );
-              return $instance;
-        }
-       
-    }
-
-      function set_cookie_counter(){
-             if ( isset( $_COOKIE[ 'count' ] ) ) 
-            {
-                $counter = ++$_COOKIE[ 'count' ];
-                setcookie('count', $counter, time() + 3600);
-            }
-            else
-            {
-                 setcookie('count', 1 , time() + 3600);
-            }
-        }
-
-    add_action('init', 'set_cookie_counter');
-    
-
-     function load_visits() {
-        register_widget( 'My_Counter_Widget' );
-    }
-    add_action( 'widgets_init', 'load_visits' );
-
- ?>
-
-
-
-
+?>
