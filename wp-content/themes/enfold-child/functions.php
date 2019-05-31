@@ -53,8 +53,8 @@ class My_Employment_Widget extends WP_Widget {
 
 //COUNTER WIDGET
 
-    class My_Counter_Widget extends WP_Widget
-    {
+   /* class My_Counter_Widget extends WP_Widget
+   {
         
         function __construct()
         {   
@@ -104,7 +104,7 @@ class My_Employment_Widget extends WP_Widget {
 
      function load_visits() {
         register_widget( 'My_Counter_Widget' );
-    }
+    }*/
     add_action( 'widgets_init', 'load_visits' );
 
     add_action( 'wp_enqueue_scripts', 'enqueue_parent_styles' );
