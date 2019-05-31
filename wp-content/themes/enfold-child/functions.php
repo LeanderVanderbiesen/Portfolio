@@ -28,7 +28,7 @@ class My_Employment_Widget extends WP_Widget {
      {
          ?>
          <p></p>
-        <select name="<?php echo $this->get_field_name('posttype' ); ?>"class="widefat">
+        <select name="<?php echo $this->get_field_name( 'posttype' ); ?>"class="widefat">
             <option value="Unemployed" name="posttype"<?php selected( $instance[ 'posttype' ], 'Unemployed') ?>> Unemployed</option>
             <option value="Jobseeking" name="posttype"<?php selected( $instance[ 'posttype' ], 'Jobseeking') ?>> Job seeking</option>
             <option value="Employed" name="posttype"<?php selected( $instance[ 'posttype' ], 'Employed') ?>> Employed</option>
@@ -53,18 +53,19 @@ class My_Employment_Widget extends WP_Widget {
 
 //COUNTER WIDGET
 
-    class My_Counter_Widget extends WP_Widget
+  /*  class My_Counter_Widget extends WP_Widget
     {
         
         function __construct()
         {   
+
             if ( isset( $_COOKIE[ 'count' ] ) ) 
             {
                 $counter = ++$_COOKIE[ 'count' ];
-                setcookie('count', $counter, time() +3600);
+                setcookie('count', $counter, time() + 3600);
             }
             else{
-                setcookie('count', 0 , time()+3600);
+                setcookie('count', 1 , time() + 3600);
             }
             
             $options = array('classname' => 'Number of visits',
@@ -79,10 +80,17 @@ class My_Employment_Widget extends WP_Widget {
             $instance[ 'nrOfVisits' ] = $_COOKIE[ 'count' ];
             
             echo $args[ 'before_widget' ];
-            if ( !$instance[ 'nrOfVisits' ] == 0) {
-               echo $args[ 'before_title' ] . apply_filters( 'widget_title', 'Number of visits: ') . $instance[ 'nrOfVisits' ] . $args[ 'after_title' ];
-
+            
+            if ( $_COOKIE[ 'count' ] == 0) 
+            {
+                echo $args[ 'before_title' ] . apply_filters( 'widget_title', 'Number of visits: ') . '1' . $args[ 'after_title' ];
             }
+            else{
+
+               echo $args[ 'before_title' ] . apply_filters( 'widget_title', 'Number of visits: ') . $instance[ 'nrOfVisits' ] . $args[ 'after_title' ];
+            }
+
+            
             
             echo $args[ 'after_widget' ];
         }
@@ -103,7 +111,7 @@ class My_Employment_Widget extends WP_Widget {
  
     function enqueue_parent_styles() {
    wp_enqueue_style( 'parent-style', get_template_directory_uri().'/style.css' );
-}
+}*/
 
  ?>
 
