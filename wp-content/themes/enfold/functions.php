@@ -732,7 +732,6 @@ if ( ! function_exists( '_wp_render_title_tag' ) )
 
 require_once( 'functions-enfold.php');
 
-
 /*
  * add option to edit elements via css class
  */

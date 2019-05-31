@@ -1,5 +1,9 @@
 <?php 
 
+  add_action( 'wp_enqueue_scripts', 'enqueue_parent_styles' );
+    function enqueue_parent_styles() {
+   wp_enqueue_style( 'parent-style', get_template_directory_uri().'/style.css' );
+}
 //EMPLOYMENT WIDGET
 
 class My_Employment_Widget extends WP_Widget {
@@ -8,10 +12,9 @@ class My_Employment_Widget extends WP_Widget {
         $options = array(
         'classname' => 'Current state of Employment',
         'description' => 'Select your current state of employment.',
-    );
+         );
         parent::__construct(
-        'state_of_employment', 'Current state of employment', $options
-    );
+        'state_of_employment', 'Current state of employment', $options);
     }
 
     public function widget( $args, $instance ) {
@@ -53,21 +56,12 @@ class My_Employment_Widget extends WP_Widget {
 
 //COUNTER WIDGET
 
-   /* class My_Counter_Widget extends WP_Widget
+    class My_Counter_Widget extends WP_Widget
    {
         
         function __construct()
         {   
 
-            if ( isset( $_COOKIE[ 'count' ] ) ) 
-            {
-                $counter = ++$_COOKIE[ 'count' ];
-                setcookie('count', $counter, time() + 3600);
-            }
-            else{
-                setcookie('count', 1 , time() + 3600);
-            }
-            
             $options = array('classname' => 'Number of visits',
                 'description' => 'Displays the total number of visits you have made to this site.'
             );
@@ -90,8 +84,6 @@ class My_Employment_Widget extends WP_Widget {
                echo $args[ 'before_title' ] . apply_filters( 'widget_title', 'Number of visits: ') . $instance[ 'nrOfVisits' ] . $args[ 'after_title' ];
             }
 
-            
-            
             echo $args[ 'after_widget' ];
         }
         public function update($new_instance, $old_instance)
@@ -100,18 +92,28 @@ class My_Employment_Widget extends WP_Widget {
               $instance[ 'nrOfVisits' ] = strip_tags( $new_instance[ 'nrOfVisits' ] );
               return $instance;
         }
+       
     }
+
+      function set_cookie_counter(){
+             if ( isset( $_COOKIE[ 'count' ] ) ) 
+            {
+                $counter = ++$_COOKIE[ 'count' ];
+                setcookie('count', $counter, time() + 3600);
+            }
+            else
+            {
+                 setcookie('count', 1 , time() + 3600);
+            }
+        }
+
+    add_action('init', 'set_cookie_counter');
+    
 
      function load_visits() {
         register_widget( 'My_Counter_Widget' );
     }
     add_action( 'widgets_init', 'load_visits' );
-
-    add_action( 'wp_enqueue_scripts', 'enqueue_parent_styles' );
- 
-    function enqueue_parent_styles() {
-   wp_enqueue_style( 'parent-style', get_template_directory_uri().'/style.css' );
-}*/
 
  ?>
 

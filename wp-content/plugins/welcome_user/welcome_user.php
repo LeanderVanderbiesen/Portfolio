@@ -8,9 +8,8 @@
 	Author URI: https://www.sitepoint.com/
 	License: GPL2
 */
-	/*class My_GreetUser_Widget extends WP_Widget
+	class My_GreetUser_Widget extends WP_Widget
 	{
-
 
 		public function __construct()
 		{
@@ -18,14 +17,12 @@
 	        'classname' => 'Welcome',
 	        'description' => 'Welcome your user.',
     		);
-    		set_cookie();
 
 	    	parent::__construct( 'welcome_user', 'Welcome the visitor', $options );
 		}
 
 		 public function widget( $args, $instance ) 
 		 {
-
 
 		 	$Hour = date('G');
 			if ( $Hour >= 5 && $Hour <= 11 ) {
@@ -55,7 +52,7 @@
 	    }
 	}
 
-	 function set_cookie()
+	 function set_cookie_greetuser()
 	{
 		if ( !isset( $_COOKIE[ 'visited'] ) ) 
 		{
@@ -63,10 +60,11 @@
 		}
 		
 	}	
+	add_action('init', 'set_cookie_greetuser');
 
 	function my_register_custom_widget() 
 	{
 	    register_widget( 'My_GreetUser_Widget' );
 	}
 	add_action( 'widgets_init', 'my_register_custom_widget' );	
-?>*/
+?>
