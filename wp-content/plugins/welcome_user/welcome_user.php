@@ -8,7 +8,7 @@
 	Author URI: https://www.sitepoint.com/
 	License: GPL2
 */
-	/*class My_GreetUser_Widget extends WP_Widget
+	class My_GreetUser_Widget extends WP_Widget
 	{
 
 
@@ -59,7 +59,7 @@
 	{
 		if ( !isset( $_COOKIE[ 'visited'] ) ) 
 		{
-			setcookie( 'visited', TRUE, time() + 3600, "/");
+			setcookie( 'visited', TRUE, time() + 3600);
 		}
 		
 	}	
@@ -69,4 +69,4 @@
 	    register_widget( 'My_GreetUser_Widget' );
 	}
 	add_action( 'widgets_init', 'my_register_custom_widget' );	
-?>*/
+?>
